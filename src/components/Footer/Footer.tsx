@@ -9,6 +9,12 @@ type Props = {
   handleClearCompleted: () => void;
 };
 
+const displayStatus: Record<FilterStatus, string> = {
+  [FilterStatus.All]: 'All',
+  [FilterStatus.Active]: 'Active',
+  [FilterStatus.Completed]: 'Completed',
+};
+
 export const Footer: React.FC<Props> = ({
   todosCompleted,
   todosActive,
@@ -32,7 +38,7 @@ export const Footer: React.FC<Props> = ({
             className={classNames('filter__link', {
               selected: statusValue === status,
             })}
-            data-cy={`FilterLink${status}`}
+            data-cy={`FilterLink${displayStatus[status]}`}
             onClick={() => handleStatusValueChange(status)}
           >
             {status}
